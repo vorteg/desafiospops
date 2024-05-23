@@ -1,0 +1,36 @@
+Sistema de Venta de Boletos de Camión
+ 
+  Descripción:
+    Desarrolla una aplicación en Python que gestione la venta de boletos de camión para viajes. La aplicación debe permitir consultar los asientos disponibles, vender boletos y realizar un seguimiento de los boletos vendidos por categoría (adulto, mayor, menor, estudiante). Utiliza el paradigma funcional, generadores y diccionarios para implementar la solución.
+
+  Objetivo:
+    Crear un programa que permita:
+
+      - Consultar asientos disponibles en diferentes secciones del camión.
+      - Vender boletos según la categoría: adulto, mayor, menor de edad, estudiante.
+      - Generar un reporte de los boletos vendidos por categoría.
+      - Consultar el asiento más vendido.
+      - Llenar aleatoriamente algunos asientos como ocupados al inicio.
+  Requisitos Técnicos:
+      - Paradigma Funcional: Utiliza funciones puras siempre que sea posible, evita el uso de variables globales y efectos secundarios.
+      - Generadores: Implementa un generador que filtre y devuelva los asientos disponibles.
+      - Diccionarios: Usa diccionarios para almacenar la información de los asientos y las ventas.
+
+  Detalles del Desafío:
+      - Inicializar Asiento y llenar aleatoriamiento los asientos.
+      - Consultar Asientos Disponibles.
+      - Vender Boletos.
+      - Generar Reporte de Boletos Vendidos por Categoria.
+      - Consultar Asiento mas Vendidos
+      - Imprimir Asientos Disponibles.
+  Notas:
+    - Asegúrate de manejar casos como intentar vender un asiento ya vendido o una categoría no válida.
+    - El reporte de ventas debe incluir el conteo de boletos vendidos por cada categoría.
+    - La función imprimir_asientos_disponibles imprime la disponibilidad de cada asiento utilizando 'O' para disponible y 'X' para ocupado.
+    - Como se debe mostrar la pantalla de seleccion de boleto
+      1  2  3  4  5  6  7  8  9  10
+  A  [0][0][0][0][x][0][x][0][0][0]B
+  B  [0][0][0][0][x][0][x][0][0][0]A
+                Pasillo            Ñ
+  C  [0][0][0][0][x][0][x][0][0][0]O
+  D  [0][0][0][0][x][0][x][0][0][0]S
