@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .repository_interface import IRepository
-from .config import Config
+from infrastructure.repository.repository_interface import IRepository
+from infrastructure.repository.config import Config
 
 class PostgreSQLRepository(IRepository):
     def __init__(self, config=Config):
