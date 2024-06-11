@@ -1,0 +1,7 @@
+{
+  "python.testing.pytestArgs": [
+    "Boletos_autobus"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
+}

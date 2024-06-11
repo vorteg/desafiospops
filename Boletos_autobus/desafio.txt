@@ -29,7 +29,7 @@ Sistema de Venta de Boletos de Camión
     - La función imprimir_asientos_disponibles imprime la disponibilidad de cada asiento utilizando 'O' para disponible y 'X' para ocupado.
     - Como se debe mostrar la pantalla de seleccion de boleto
       1  2  3  4  5  6  7  8  9  10
-  A  [0][0][0][0][x][0][x][0][0][0]B
+  A  [1,0][0][0][0][x][0][x][0][0][0]B
   B  [0][0][0][0][x][0][x][0][0][0]A
                 Pasillo            Ñ
   C  [0][0][0][0][x][0][x][0][0][0]O
