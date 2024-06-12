@@ -1,5 +1,5 @@
 # domain/services.py
-from domain.models import UbicacionAsiento,Usuario, Boleto
+from domain.models import UbicacionAsiento,Usuario, Boleto, Asiento
 from infrastructure.repository.tables_postgresql import AsientosTable, UsuariosTable, BoletosTable
 from infrastructure.repository.repository_interface import IRepository
 from string import ascii_uppercase
@@ -10,6 +10,14 @@ from typing import Dict
 class AsientosService:
     def __init__(self,repository: IRepository) -> None:
         self.repository = repository
+        
+    def disponibilidad(self,asiento_id:int) -> bool:
+        asiento:Asiento = self.repository.get_data_by(table=AsientosTable,filters={'id':asiento_id})
+        return asiento.disponible
+        
+    def actualizar_disponibilidad(self,asiento_id:int,estado:bool)-> None:
+        self.repository.update_data_by(table=AsientosTable,filters={'id':asiento_id}, data={"disponible":estado})
+        
         
     def generar_asientos_disponibles(self, numero_de_asientos: int) -> None:
         # Borrar todos los datos existentes de AsientoTable

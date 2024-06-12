@@ -34,6 +34,22 @@ def test_generar_asientos_disponibles(asientos_service, repository):
     for asiento in asientos:
         assert asiento.disponible is True
         assert 1 <= asiento.numero <= numero_de_asientos
+
+def test_disponibilidad_asientos(asientos_service):
+    estado_asiento = asientos_service.disponibilidad(1)  
+    assert type(estado_asiento) is bool
+    
+    
+def test_actualizar_disponibilidad_asientos(asientos_service, repository):
+    asientos_service.actualizar_disponibilidad(1, False)  
+    
+    session = repository.get_session()
+    asiento = session.query(AsientosTable).filter_by(id=1).first()
+    session.close()
+
+    assert asiento.disponible is False
+        
+      
         
 def test_crear_usuario(usuarios_service, repository):
     usuario = Usuario(id=None,nombre="Juan Pérez", tipo=TipoUsuario.ADULTO, profesion=ProfesionUsuario.MAESTRO, boleto_id=None)
@@ -84,3 +100,12 @@ def test_crear_boleto(boletos_service, repository):
 
     assert boleto_db is not None
     assert boleto_db.id == 1
+    
+def test_obtener_boleto_id(boletos_service):
+    boleto_id = boletos_service.obtener_boleto_id(usuario_id=1)
+    assert boleto_id is not None
+    assert boleto_id == 1
+    
+def test_obtener_boleto_id_no_existe(boletos_service):
+    with pytest.raises(ValueError, match="Usuario con id .* no encontrado, en boletos"):
+        boletos_service.obtener_boleto_id(usuario_id=50)
