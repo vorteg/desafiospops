@@ -12,17 +12,17 @@ class PostgreSQLRepository(IRepository):
     def get_session(self):
         return scoped_session(self.Session)
 
-    def get_data(self, table: Any, id: int) -> Any:
-        session = self.get_session()
-        try:
-            return session.query(table).filter_by(id=id).first()
-        finally:
-            session.close()
-
-    def get_data_by(self, table: Any, filters: Dict[str, Any]) -> List[Any]:
+    def get_data(self, table: Any, filters: Dict[str, Any]) -> List[Any]:
         session = self.get_session()
         try:
             return session.query(table).filter_by(**filters).all()
+        finally:
+            session.close()
+
+    def get_data_by(self, table: Any, filters:Dict[str, Any]) -> Any:
+        session = self.get_session()
+        try:
+            return session.query(table).filter_by(**filters).first()
         finally:
             session.close()
 

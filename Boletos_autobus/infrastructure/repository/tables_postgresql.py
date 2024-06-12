@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from domain.models import TipoUsuario, ProfesionUsuario, UbicacionAsiento
 
 Base = declarative_base()
@@ -10,6 +10,7 @@ class UsuariosTable(Base):
     nombre = Column(String(50))
     tipo = Column(Enum(TipoUsuario))
     profesion = Column(Enum(ProfesionUsuario))
+    boleto_id = Column(Integer, ForeignKey('boletos.id'), nullable=True) 
 
 class AsientosTable(Base):
     __tablename__ = 'asientos'

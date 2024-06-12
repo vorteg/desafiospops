@@ -1,5 +1,5 @@
 # domain/models.py
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
 from enum import Enum
 
@@ -21,29 +21,26 @@ class UbicacionAsiento(str, Enum):
 
 
 class Usuario(BaseModel):
-    id: int = Field(...)
+    id: Optional[int] = Field(None, alias="id")
     nombre: str = Field(..., max_length=50)
     tipo: TipoUsuario
     profesion: ProfesionUsuario
-    boleto_id:Optional[int] = Field(None, alias="id")
+    boleto_id:Optional[int] = Field(None)
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class Asiento(BaseModel):
-    id: int = Field(...)
+    id: Optional[int] = Field(None, alias="id")
     numero: int
     disponible: bool
     ubicacion:UbicacionAsiento
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class Boleto(BaseModel):
-    id: int = Field(...)
+    id: Optional[int] = Field(None, alias="id")
     asiento_id: int
     usuario_id: int
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
     

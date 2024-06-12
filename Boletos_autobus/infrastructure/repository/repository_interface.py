@@ -6,10 +6,10 @@ class IRepository(ABC):
     def get_session(self):
         ...
     @abstractmethod
-    def get_data(self, table: Any, id: int) -> Any:
+    def get_data(self, table: Any, filters: Dict[str, Any]) -> List[Any]:
         ...
     @abstractmethod
-    def get_data_by(self, table: Any, filters: Dict[str, Any]) -> List[Any]:
+    def get_data_by(self, table: Any, filters: Dict[str, Any]) -> Any:
         ...
     @abstractmethod
     def create_data(self, table: Any, data: Dict[str, Any]) -> Any:
