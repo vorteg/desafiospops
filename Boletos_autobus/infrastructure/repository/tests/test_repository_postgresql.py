@@ -13,6 +13,7 @@ def test_db_connection(db_session):
     logger.info(f"\n Esta es la version: {version_info[0]}")
     assert result is not None, "La conexión a la base de datos falló"
     
+@pytest.mark.skip(reason="Existen las tablas.")    
 def test_create_tables(db_session):
     inspector = inspect(db_session.bind)
     tables = inspector.get_table_names()

@@ -1,27 +1,27 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum
 from sqlalchemy.ext.declarative import declarative_base
-from domain.models import TipoUsuario, ProfesionUsuario, Ubicacion
+from domain.models import TipoUsuario, ProfesionUsuario, UbicacionAsiento
 
 Base = declarative_base()
 
-class UsuarioTable(Base):
+class UsuariosTable(Base):
     __tablename__ = 'usuarios'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True,  autoincrement=True)
     nombre = Column(String(50))
     tipo = Column(Enum(TipoUsuario))
     profesion = Column(Enum(ProfesionUsuario))
 
-class AsientoTable(Base):
+class AsientosTable(Base):
     __tablename__ = 'asientos'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True,  autoincrement=True)
     numero = Column(Integer)
     fila = Column(String(1))
     disponible = Column(Boolean)
-    ubicacion = Column(Enum(Ubicacion))
+    ubicacion = Column(Enum(UbicacionAsiento))
 
-class BoletoTable(Base):
+class BoletosTable(Base):
     __tablename__ = 'boletos'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     asiento_id = Column(Integer, ForeignKey('asientos.id'))
     usuario_id = Column(Integer, ForeignKey('usuarios.id'))
-    tipo = Column(Enum(TipoUsuario))
+   

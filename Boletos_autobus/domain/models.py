@@ -14,25 +14,36 @@ class ProfesionUsuario(str, Enum):
     MAESTRO = "maestro"
     NINGUNO = "ninguno"
     
-class Ubicacion(str, Enum):
-    VENTANA = "V"
-    PASILLO = "P"
+class UbicacionAsiento(str, Enum):
+    PASILLO = "pasillo"
+    VENTANA = "ventana"
   
 
 
 class Usuario(BaseModel):
-    id: Optional[int] = Field(None, alias="id")
+    id: int = Field(...)
     nombre: str = Field(..., max_length=50)
     tipo: TipoUsuario
     profesion: ProfesionUsuario
+    boleto_id:Optional[int] = Field(None, alias="id")
+    
+    class Config:
+        orm_mode = True
 
 class Asiento(BaseModel):
-    id: Optional[int] = Field(None, alias="id")
+    id: int = Field(...)
     numero: int
     disponible: bool
+    ubicacion:UbicacionAsiento
+    
+    class Config:
+        orm_mode = True
 
 class Boleto(BaseModel):
-    id: Optional[int] = Field(None, alias="id")
+    id: int = Field(...)
     asiento_id: int
     usuario_id: int
+    
+    class Config:
+        orm_mode = True
     
